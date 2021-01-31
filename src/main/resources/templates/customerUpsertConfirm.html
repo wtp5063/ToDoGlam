@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="main">
+  <section class="col-md-8 mx-auto pdd">
+    <h2>この内容で宜しいですか？</h2>
+    <table class="table">
+      <tr>
+        <th>名前</th>
+        <td>[[${session['customer'].name}]]</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>[[${session['customer'].email}]]</td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td>[[${session['customer'].address}]]</td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td>[[${session['customer'].tel}]]</td>
+      </tr>
+    </table>
+    <form th:action="@{/customer/upsert_confirm}" method="post">
+      <input class="btn btn-success" type="submit" name="button" value="戻る">
+      <input class="btn btn-success" type="submit" name="button" value="OK">
+    </form>
+  </section>
+</div>
+</html>
