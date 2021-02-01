@@ -23,7 +23,7 @@ public class LogInController
         if(error != null) {
             model.addAttribute("msg", "ログインできませんでした");
         }
-        model.addAttribute("title", "SpringTest:ログイン画面");
+        model.addAttribute("title", "ログイン画面");
         model.addAttribute("main", "login::main");
         return "layout";
     }

@@ -28,7 +28,7 @@ public class CustomerDaoImpl implements CustomerDao
     private final JdbcTemplate jdbc;
 
     /**
-     * 受け取ったEntity classに格納されたデータをテーブルに挿入する。
+     * 受け取ったEntityから取り出したデータをテーブルに挿入する。
      *
      * @param entity customer(ユーザー情報)テーブルのEntity class。
      * @return 成功時：true、失敗時：false。
@@ -37,8 +37,8 @@ public class CustomerDaoImpl implements CustomerDao
     public boolean insert(CustomerEntity entity) throws DataAccessException
     {
         String password = EncodeUtil.passwordEncoder().encode(entity.getPassword());
-        int rowNum = jdbc.update("INSERT INTO customer (name, email, password, address, tel) VALUES(?, ?, ?, ?, ?)", entity.getName(), entity.getEmail(), password, entity.getAddress(), entity.getTel());
-        return rowNum > 0;
+        int rowCount = jdbc.update("INSERT INTO customer (name, email, password, address, tel) VALUES(?, ?, ?, ?, ?)", entity.getName(), entity.getEmail(), password, entity.getAddress(), entity.getTel());
+        return rowCount > 0;
     }
 
     /**
@@ -107,9 +107,9 @@ public class CustomerDaoImpl implements CustomerDao
     public boolean updateById(CustomerEntity entity) throws DataAccessException
     {
         String password = EncodeUtil.passwordEncoder().encode(entity.getPassword());
-        int rowNum = jdbc.update("UPDATE customer SET name = ?, email = ?, password = ?, address = ?, tel = ?, role = ? WHERE id = ?", entity.getName(), entity.getEmail(), password, entity.getAddress(), entity.getTel(), "ROLE_USER",
+        int rowCount = jdbc.update("UPDATE customer SET name = ?, email = ?, password = ?, address = ?, tel = ?, role = ? WHERE id = ?", entity.getName(), entity.getEmail(), password, entity.getAddress(), entity.getTel(), "ROLE_USER",
                 entity.getId());
-        return rowNum > 0;
+        return rowCount > 0;
     }
 
     /**
@@ -121,8 +121,8 @@ public class CustomerDaoImpl implements CustomerDao
     @Override
     public boolean deleteById(int id) throws DataAccessException
     {
-        int rowNum = jdbc.update("DELETE FROM customer WHERE id = ?", id);
-        return rowNum > 0;
+        int rowCount = jdbc.update("DELETE FROM customer WHERE id = ?", id);
+        return rowCount > 0;
     }
 
 }

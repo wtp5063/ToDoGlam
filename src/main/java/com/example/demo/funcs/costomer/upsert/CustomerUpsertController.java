@@ -106,6 +106,12 @@ public class CustomerUpsertController
         return "redirect:/customer/upsert_confirm";
     }
 
+    /**
+     * 受け取ったidと一致するデータを削除してログアウトする。
+     * @param id customer(顧客情報)テーブルのプライマリキー。
+     * @param model
+     * @return リダイレクト情報。
+     */
     @GetMapping("/delete")
     public String delete(@RequestParam("id") String id, Model model) {
         boolean result = service.deleteById(Integer.parseInt(id));
